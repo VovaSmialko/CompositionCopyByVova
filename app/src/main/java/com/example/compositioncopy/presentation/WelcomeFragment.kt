@@ -23,10 +23,18 @@ class WelcomeFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonUnderstand.setOnClickListener { }
+        binding.buttonUnderstand.setOnClickListener {
+            launchChooseLevelFragment()
+        }
+    }
+
+    private fun launchChooseLevelFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, ChooseLevelFragment.newInstance())
+            .addToBackStack(ChooseLevelFragment.NAME)
+            .commit()
     }
 
     override fun onDestroyView() {
